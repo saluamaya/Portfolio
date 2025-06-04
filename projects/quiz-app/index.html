@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Quiz App | Salua Amaya</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>Simple General Knowledge Quiz</h1>
+
+    <!-- Quiz area -->
+    <div id="quiz">
+      <div id="question-container">
+        <div id="question">Question text</div>
+        <div id="answer-buttons" class="btn-grid"></div>
+      </div>
+      <button id="next-btn" class="btn hide">Next</button>
+    </div>
+
+    <!-- Score result -->
+    <div id="result" class="hide">
+      <h2>Your score: <span id="score">0</span> / <span id="total">0</span></h2>
+      <button id="restart-btn" class="btn">Restart Quiz</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
