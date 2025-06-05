@@ -44,15 +44,32 @@ const resultContainer = document.getElementById('result');
 const scoreElement = document.getElementById('score');
 const totalElement = document.getElementById('total');
 const restartButton = document.getElementById('restart-btn');
+const progressBar = document.getElementById('progress-bar');
 
 let currentQuestionIndex = 0;
 let score = 0;
+
+let countdown;
+let timeLeft = 10;
+let timerDisplay;
 
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
   resultContainer.classList.add('hide');
   questionContainer.classList.remove('hide');
+
+  if (!document.getElementById('timer')) {
+    timerDisplay = document.createElement('div');
+    timerDisplay.id = 'timer';
+    timerDisplay.style.fontWeight = 'bold';
+    timerDisplay.style.marginBottom = '10px';
+    timerDisplay.style.color = '#555';
+    questionContainer.prepend(timerDisplay);
+  } else {
+    timerDisplay = document.getElementById('timer');
+  }
+
   showQuestion();
 }
 
@@ -76,15 +93,21 @@ function showQuestion() {
     button.addEventListener('click', selectAnswer);
     answerButtons.appendChild(button);
   });
+
+  startTimer();
 }
 
 function resetState() {
+  clearInterval(countdown);
   while (answerButtons.firstChild) {
     answerButtons.removeChild(answerButtons.firstChild);
   }
+  if (timerDisplay) timerDisplay.textContent = '';
+  updateProgressBar();
 }
 
 function selectAnswer(e) {
+  clearInterval(countdown);
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct === 'true';
 
@@ -115,16 +138,87 @@ function showResult() {
   scoreElement.textContent = score;
   totalElement.textContent = questions.length;
 
+  const savedHighScore = localStorage.getItem('highScore') || 0;
+
+  if (score > savedHighScore) {
+    localStorage.setItem('highScore', score);
+  }
+
+  document.getElementById('best-score').textContent = Math.max(score, savedHighScore);
+
+  const previousMessage = document.getElementById('custom-message');
+  if (previousMessage) previousMessage.remove();
+
+  const message = document.createElement('p');
+  message.id = 'custom-message';
+  message.style.marginTop = '10px';
+
   if (score === questions.length) {
-    const congrats = document.createElement('p');
-    congrats.textContent = "🎉 Congratulations! You got a perfect score!";
-    congrats.style.color = "#28a745";
-    congrats.style.fontWeight = "bold";
-    congrats.style.marginTop = "10px";
-    resultContainer.appendChild(congrats);
+    message.textContent = "🎉 Perfect! You're a genius!";
+    message.style.color = "#28a745";
+  } else if (score >= questions.length / 2) {
+    message.textContent = "👍 Good job! Keep practicing.";
+    message.style.color = "#007acc";
+  } else {
+    message.textContent = "📘 Keep trying! You'll get there.";
+    message.style.color = "#dc3545";
+  }
+
+  resultContainer.appendChild(message);
+}
+
+function startTimer() {
+  timeLeft = 10;
+  updateTimerDisplay();
+  updateProgressBar();
+
+  clearInterval(countdown);
+  countdown = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    updateProgressBar();
+
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      handleTimeUp();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  if (timerDisplay) {
+    timerDisplay.textContent = `Time left: ${timeLeft}s`;
   }
 }
 
+function updateProgressBar() {
+  if (progressBar) {
+    progressBar.style.width = `${(timeLeft / 10) * 100}%`;
+  }
+}
+
+function handleTimeUp() {
+  disableAnswers();
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
+  }, 1000);
+}
+
+function disableAnswers() {
+  Array.from(answerButtons.children).forEach(button => {
+    button.disabled = true;
+    if (button.dataset.correct === 'true') {
+      button.classList.add('correct');
+    } else {
+      button.classList.add('incorrect');
+    }
+  });
+}
 
 restartButton.addEventListener('click', startQuiz);
 

@@ -7,29 +7,43 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
 <div class="calculator">
-<input type="text" id="display" disabled />
-<div class="buttons">
-<button onclick="clearDisplay()">C</button>
-<button onclick="appendToDisplay('7')">7</button>
-<button onclick="appendToDisplay('8')">8</button>
-<button onclick="appendToDisplay('9')">9</button>
-<button onclick="appendToDisplay('/')">/</button>
-<button onclick="appendToDisplay('4')">4</button>
-<button onclick="appendToDisplay('5')">5</button>
-<button onclick="appendToDisplay('6')">6</button>
-<button onclick="appendToDisplay('*')">*</button>
-<button onclick="appendToDisplay('1')">1</button>
-<button onclick="appendToDisplay('2')">2</button>
-<button onclick="appendToDisplay('3')">3</button>
-<button onclick="appendToDisplay('-')">-</button>
-<button onclick="appendToDisplay('0')">0</button>
-<button onclick="appendToDisplay('.')">.</button>
-<button onclick="calculate()">=</button>
-<button onclick="appendToDisplay('+')">+</button>
-</div>
+  <input type="text" id="display" disabled />
+
+  <div class="buttons">
+    <button onclick="clearDisplay()" title="Borrar">C</button>
+    <button onclick="appendToDisplay('(')" title="Paréntesis">(</button>
+    <button onclick="appendToDisplay(')')" title="Paréntesis">)</button>
+    <button onclick="appendToDisplay('/')" title="División">/</button>
+
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('*')" title="Multiplicación">*</button>
+
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('-')" title="Resta">-</button>
+
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('+')" title="Suma">+</button>
+
+    <button onclick="appendToDisplay('0')" class="zero">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button onclick="calculate()" title="Igual">=</button>
+
+    <button onclick="applyFunction('sqrt')" class="extra" title="Raíz Cuadrada">√</button>
+    <button onclick="applyFunction('square')" class="extra" title="Potencia">x²</button>
+    <button onclick="applyFunction('reciprocal')" class="extra" title="Inverso">1/x</button>
+    <button onclick="appendToDisplay('%')" class="extra" title="Porcentaje">%</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>

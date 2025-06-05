@@ -11,18 +11,26 @@
   <div class="container">
     <h1>Simple General Knowledge Quiz</h1>
 
+    <!-- Temporizador -->
+    <div id="timer"></div>
+
+    <!-- Barra de progreso -->
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+
     <!-- Quiz area -->
     <div id="quiz">
       <div id="question-container">
         <div id="question">Question text</div>
         <div id="answer-buttons" class="btn-grid"></div>
       </div>
-      <button id="next-btn" class="btn hide">Next</button>
     </div>
 
-    <!-- Score result -->
+    <!-- Resultado -->
     <div id="result" class="hide">
       <h2>Your score: <span id="score">0</span> / <span id="total">0</span></h2>
+      <div id="high-score">Best score: <span id="best-score">0</span></div>
       <button id="restart-btn" class="btn">Restart Quiz</button>
     </div>
   </div>
@@ -30,4 +38,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
