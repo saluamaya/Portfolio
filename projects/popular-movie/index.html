@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Popular Movies | Salua Amaya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Popular Movies</h1>
+    <form id="search-form">
+      <input type="text" id="search-input" placeholder="Search movies..." />
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+
+    <main id="movies-container"></main>
+<div id="pagination" style="text-align:center; margin-top:20px;"></div>
+
+  
+
+  <div id="message"></div>
+
+  <!-- Modal para detalles -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="close-btn" class="close-btn">&times;</span>
+      <img id="modal-poster" src="" alt="Movie Poster" />
+      <div class="modal-text">
+        <h2 id="modal-title"></h2>
+        <p id="modal-overview"></p>
+        <p><strong>Release date:</strong> <span id="modal-release"></span></p>
+        <p><strong>Rating:</strong> <span id="modal-rating"></span> / 10</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Salua Amaya - Portfolio
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
