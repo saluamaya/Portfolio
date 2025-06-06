@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Salua Amaya | Portfolio</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Salua Amaya | Frontend Developer</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-   <header>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu-open" class="shadow-large">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </div>
+
+  <header>
+    <div id="mobile-menu-close">
+      <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
     <ul id="menu" class="shadow">
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -18,14 +28,20 @@
     </ul>
   </header>
 
-  <section id="lead">
+  <!-- Hero -->
+  <div id="lead">
     <div id="lead-content">
       <h1>Salua Amaya</h1>
       <h2>Frontend Developer</h2>
       <a href="#" class="btn-rounded-white">Download Resume</a>
     </div>
-  </section>
+    <div id="lead-overlay"></div>
+    <div id="lead-down">
+      <span><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+    </div>
+  </div>
 
+  <!-- Projects -->
   <section id="projects" class="background-alt">
     <h2 class="heading">Projects</h2>
     <div class="container">
@@ -48,7 +64,7 @@
             <a href="https://github.com/saluamaya/Portfolio/tree/master/projects/contact-form" target="_blank">Code</a>
           </div>
         </div>
- 
+
         <div class="project shadow-large">
           <div class="project-info">
             <h3>Quiz App</h3>
@@ -89,9 +105,10 @@
     </div>
   </section>
 
+  <!-- Skills -->
   <section id="skills">
     <h2 class="heading">Skills</h2>
-    <ul class="skill-list">
+    <ul>
       <li>JavaScript (ES6 basics, DOM manipulation, event handling)</li>
       <li>HTML5 & CSS3 (responsive layouts, flexbox)</li>
       <li>Git & GitHub (version control basics)</li>
@@ -100,37 +117,45 @@
     </ul>
   </section>
 
+  <!-- Contact -->
   <section id="contact">
-    <h2>Get in Touch</h2>
+    <h2 class="heading">Get in Touch</h2>
     <p class="tagline">Have a project or question? Send me a message.</p>
     <div class="form-wrapper">
       <form id="contact-form" action="https://formsubmit.co/salua.bomorca@gmail.com" method="POST">
         <input type="hidden" name="_next" value="thank-you.html" />
         <input type="hidden" name="_captcha" value="false" />
-
-        <label for="name">Name</label>
-        <input id="name" name="name" required placeholder="Your name" />
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="your@email.com" />
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required placeholder="Write your message here..."></textarea>
-
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="your@email.com" required />
+        <textarea name="message" rows="5" placeholder="Write your message here..." required></textarea>
         <button type="submit" class="btn-contact">Send Message</button>
       </form>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2025 Salua Amaya. All rights reserved.</p>
-    <div class="social">
-      <a href="https://github.com/saluamaya" target="_blank"><i class="fa fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/salua-amaya-917a50369" target="_blank" rel="noopener noreferrer">
-        <img src="linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;">
-      </a>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5 copyright">
+          <p>&copy; 2025 Salua Amaya</p>
+        </div>
+        <div class="col-sm-2 top">
+          <span id="to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
+        </div>
+        <div class="col-sm-5 social">
+          <ul>
+            <li><a href="https://github.com/saluamaya" target="_blank"><i class="fa fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/salua-amaya-917a50369" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/scripts.min.js"></script>
 
 </body>
 </html>
