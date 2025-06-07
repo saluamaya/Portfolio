@@ -66,12 +66,12 @@ h1 {
 }
 
 .correct {
-  background-color: #4caf50 !important; /* verde */
+  background-color: #4caf50 !important; 
   color: white;
 }
 
 .incorrect {
-  background-color: #f44336 !important; /* rojo */
+  background-color: #f44336 !important; 
   color: white;
   opacity: 0.6;
 }
@@ -126,8 +126,6 @@ h1 {
   overflow: hidden;
 }
 
-
-/* Temporizador */
 #timer {
   font-weight: 700;
   font-size: 1.1rem;

@@ -3,14 +3,12 @@ const input = document.getElementById('todo-input');
 const list = document.getElementById('todo-list');
 const emptyMessage = document.getElementById('empty-message');
 
-// Cargar tareas almacenadas
 document.addEventListener('DOMContentLoaded', () => {
   const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
   savedTasks.forEach(task => addTask(task.text, task.done));
   toggleEmptyMessage();
 });
 
-// Agregar nueva tarea
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   const taskText = input.value.trim();
@@ -22,7 +20,6 @@ form.addEventListener('submit', function (e) {
   }
 });
 
-// Función para añadir tarea a la lista
 function addTask(text, done = false) {
   const li = document.createElement('li');
   li.textContent = text;
@@ -40,7 +37,7 @@ function addTask(text, done = false) {
   deleteBtn.textContent = '✕';
   deleteBtn.title = 'Delete';
   deleteBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // evitar que marque como completado al borrar
+    e.stopPropagation(); 
     list.removeChild(li);
     saveTasks();
     toggleEmptyMessage();
@@ -50,7 +47,6 @@ function addTask(text, done = false) {
   list.appendChild(li);
 }
 
-// Filtrar tareas
 const filterButtons = document.querySelectorAll('.filter-btn');
 
 filterButtons.forEach(btn => {
@@ -77,12 +73,10 @@ function filterTasks(filter) {
   });
 }
 
-// Mostrar u ocultar mensaje vacío
 function toggleEmptyMessage() {
   emptyMessage.style.display = list.children.length === 0 ? 'block' : 'none';
 }
 
-// Guardar tareas en localStorage
 function saveTasks() {
   const tasks = Array.from(list.children).map(li => ({
     text: li.firstChild.textContent.trim(),

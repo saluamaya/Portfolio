@@ -11,7 +11,6 @@ let currentPage = 1;
 let currentQuery = '';
 let totalPages = 1;
 
-// Obtener géneros de TMDB y guardarlos como { id: nombre }
 async function fetchGenres() {
   try {
     const res = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`);
@@ -24,7 +23,6 @@ async function fetchGenres() {
   }
 }
 
-// Obtener películas desde la API y mostrarlas
 async function fetchMovies(url) {
   moviesContainer.innerHTML = '';
   messageEl.textContent = 'Loading...';
@@ -51,7 +49,6 @@ async function fetchMovies(url) {
   }
 }
 
-// Mostrar las películas en la página
 function displayMovies(movies) {
   moviesContainer.innerHTML = '';
 
@@ -83,7 +80,6 @@ function displayMovies(movies) {
   });
 }
 
-// Crear y actualizar la paginación
 function updatePagination() {
   paginationEl.innerHTML = `
     <button id="prev-btn" ${currentPage === 1 ? 'disabled' : ''}>Anterior</button>
@@ -106,7 +102,6 @@ function updatePagination() {
   });
 }
 
-// Lógica para cargar películas (populares o de búsqueda)
 function loadMovies() {
   let url;
 
@@ -119,7 +114,6 @@ function loadMovies() {
   fetchMovies(url);
 }
 
-// Evento de envío del formulario de búsqueda
 searchForm.addEventListener('submit', e => {
   e.preventDefault();
   currentQuery = searchInput.value.trim();
@@ -127,7 +121,6 @@ searchForm.addEventListener('submit', e => {
   loadMovies();
 });
 
-// Inicializar la app
 async function init() {
   await fetchGenres();
   loadMovies();

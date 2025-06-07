@@ -8,13 +8,11 @@ function appendToDisplay(value) {
 
   if (justCalculated) {
     if (value === '0') {
-      // Mostrar 0 pero marcar que vino justo después del cálculo
       display.value = '0';
       zeroAfterCalc = true;
       justCalculated = false;
       return;
     } else if (isNumber) {
-      // Si se presionó un número distinto de 0 después del cálculo y había un 0 antes, reemplazarlo
       if (zeroAfterCalc) {
         display.value = value;
         zeroAfterCalc = false;
@@ -22,12 +20,10 @@ function appendToDisplay(value) {
         display.value = value;
       }
     } else {
-      // Si se presiona un operador, continuar desde el resultado anterior
       display.value = lastResult + value;
     }
     justCalculated = false;
   } else {
-    // Si venimos de un 0 post-cálculo y se marca un número, reemplazamos el 0
     if (zeroAfterCalc && /^[1-9]$/.test(value)) {
       display.value = value;
       zeroAfterCalc = false;
@@ -45,11 +41,8 @@ function clearDisplay() {
 
 function calculate() {
   try {
-    // Reemplazar algunos símbolos para que JS pueda evaluar correctamente
     let expression = display.value.replace(/√/g, 'Math.sqrt')
                                   .replace(/%/g, '/100');
-
-    // Usar eval con cuidado para evaluar la expresión
     const result = eval(expression);
     display.value = result;
     lastResult = result;
@@ -85,7 +78,7 @@ function applyFunction(fn) {
   }
 }
 
-// Soporte para teclado
+
 document.addEventListener('keydown', function(e) {
   const allowedKeys = '0123456789+-*/().%';
 
